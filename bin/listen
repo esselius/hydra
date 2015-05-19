@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+if ARGV[0]
+  puts "Fake: Successfully listened to #{ARGV[0]}!"
+else
+  puts "Help: make listen SQS=\"SQS-Queue\""
+  exit 1
+end

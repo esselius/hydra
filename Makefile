@@ -6,8 +6,13 @@ REPO_IMAGE:="esselius/hydra:$(shell git rev-parse --short HEAD)"
 
 
 # Build, run interactive thing and clean up
+listen:
+	@$(MAKE)  build  IMAGE=$(TEMP_IMAGE) REDIR=">/dev/null"
+	@-$(MAKE) run    IMAGE=$(TEMP_IMAGE) COMMAND="listen $(SQS)"
+	@$(MAKE)  clean  IMAGE=$(TEMP_IMAGE)
+
 irb:
-	@$(MAKE)  build  IMAGE=$(TEMP_IMAGE)
+	@$(MAKE)  build  IMAGE=$(TEMP_IMAGE) REDIR=">/dev/null"
 	@-$(MAKE) run    IMAGE=$(TEMP_IMAGE) OPTS="-it" COMMAND="irb"
 	@$(MAKE)  clean  IMAGE=$(TEMP_IMAGE)
 
