@@ -13,7 +13,7 @@ listen:
 
 irb:
 	@$(MAKE)  build  IMAGE=$(TEMP_IMAGE) REDIR=">/dev/null"
-	@-$(MAKE) run    IMAGE=$(TEMP_IMAGE) OPTS="-it" COMMAND="irb"
+	@-$(MAKE) run    IMAGE=$(TEMP_IMAGE) OPTS="-t" COMMAND="irb"
 	@$(MAKE)  clean  IMAGE=$(TEMP_IMAGE)
 
 # Build, run tests and clean up
@@ -32,7 +32,7 @@ deploy:
 
 # These targets are not intended for direct use
 run:
-	@docker run $(OPTS) --rm $(IMAGE) $(COMMAND)
+	@docker run $(OPTS) -i --rm $(IMAGE) $(COMMAND)
 
 build:
 	@docker build $(OPTS) --force-rm -t $(IMAGE) . $(REDIR)
