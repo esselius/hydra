@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+$stdout.sync = true
+$stderr.sync = true
+
+region      = ARGV[0]
+queue_name  = ARGV[1]
+
+unless region && queue_name
+  puts "Help: make listen REGION=\"Region\" SQS=\"SQS-Queue\""
+  exit 1
+end
+
+require_relative '../app'
+
+app = App.new(region, queue_name)
+
+app.listen
